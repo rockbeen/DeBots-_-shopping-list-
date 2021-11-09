@@ -1,0 +1,277 @@
+{
+	"ABI version": 2,
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "menuOutput",
+			"inputs": [
+				{"components":[{"name":"paidFor","type":"uint256"},{"name":"notPaid","type":"uint256"},{"name":"totalSum","type":"uint256"}],"name":"summary","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NameProduct",
+			"inputs": [
+				{"name":"index","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "NumberOfProducts",
+			"inputs": [
+				{"name":"name","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "AddProduct",
+			"inputs": [
+				{"name":"val","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onProductAddError",
+			"inputs": [
+				{"name":"sdkError","type":"uint32"},
+				{"name":"exitCode","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onProductAdded",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "start",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setContract",
+			"inputs": [
+				{"name":"code","type":"cell"},
+				{"name":"data","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "savePublicKey",
+			"inputs": [
+				{"name":"value","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "checkAccountType",
+			"inputs": [
+				{"name":"acc_type","type":"int8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "creditAcc",
+			"inputs": [
+				{"name":"val","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "CreditError",
+			"inputs": [
+				{"name":"sdkError","type":"uint32"},
+				{"name":"exitCode","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "CreditErrorTryAgain",
+			"inputs": [
+				{"name":"tryAgain","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "DeployError",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "DeploySuccess",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "waitBeforeCredit",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "DeployErrorTryAgain",
+			"inputs": [
+				{"name":"tryAgain","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "checkIfContractHasBalance",
+			"inputs": [
+				{"name":"acc_type","type":"int8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getDebotInfo",
+			"id": "0xDEB",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"name","type":"bytes"},
+				{"name":"version","type":"bytes"},
+				{"name":"publisher","type":"bytes"},
+				{"name":"caption","type":"bytes"},
+				{"name":"author","type":"bytes"},
+				{"name":"support","type":"address"},
+				{"name":"hello","type":"bytes"},
+				{"name":"language","type":"bytes"},
+				{"name":"dabi","type":"bytes"},
+				{"name":"icon","type":"bytes"}
+			]
+		},
+		{
+			"name": "getRequiredInterfaces",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"interfaces","type":"uint256[]"}
+			]
+		},
+		{
+			"name": "showList",
+			"inputs": [
+				{"name":"index","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "showListError",
+			"inputs": [
+				{"name":"sdkError","type":"uint32"},
+				{"name":"exitCode","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "_showList",
+			"inputs": [
+				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint256"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removeProduct",
+			"inputs": [
+				{"name":"index","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "_removeProduct",
+			"inputs": [
+				{"name":"val","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "successfullyDeletedProduct",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "DeleteError",
+			"inputs": [
+				{"name":"sdkError","type":"uint32"},
+				{"name":"exitCode","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "showData",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "showDataError",
+			"inputs": [
+				{"name":"sdkError","type":"uint32"},
+				{"name":"exitCode","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getDebotOptions",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"options","type":"uint8"},
+				{"name":"debotAbi","type":"bytes"},
+				{"name":"targetAbi","type":"bytes"},
+				{"name":"targetAddr","type":"address"}
+			]
+		},
+		{
+			"name": "setABI",
+			"inputs": [
+				{"name":"dabi","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}
