@@ -55,7 +55,7 @@ abstract contract BaseDebot is Debot{
             showData();
         }else if(acc_type == -1)  { 
             Terminal.print(0, "You don't have a Debot 'Shopping list' yet, so a new contract with an initial balance of 0.2 tokens will be deployed");
-            AddressInput.get(tvm.functionId(creditAcc),"Select a wallet for payment. We will ask you to sign two transactions.");
+            AddressInput.get(tvm.functionId(creditAccount),"Select a wallet for payment. We will ask you to sign two transactions.");
         }else if(acc_type == 0) { 
             Terminal.print(0, format(
                 "Deploying new contract. If an error occurs, check if your Debot 'Shopping list' contract has enough tokens on its balance."
@@ -66,11 +66,11 @@ abstract contract BaseDebot is Debot{
         }
     }
 
-    function creditAcc(address val) public {
-        creationAcc = val;
+    function creditAccount(address value) public {
+        creationAcc = value;
         optional(uint256) pubkey = 0;
         TvmCell empty;
-        Transactable(creationAcc).sendTransaction{
+        IntarfacesendTransaction(creationAcc).sendTransaction{
             extMsg: true,
             abiVer: 2,
             sign: true,
@@ -87,7 +87,12 @@ abstract contract BaseDebot is Debot{
     }
 
     function CreditErrorTryAgain(bool tryAgain) public{
-        (tryAgain)?creditAcc(creationAcc):start();
+            if(tryAgain){
+            creditAccount(creationAcc);
+        }else{
+            start();
+        }
+        
     }
 
     function deploy() private view {
@@ -121,10 +126,20 @@ abstract contract BaseDebot is Debot{
     }
 
     function DeployErrorTryAgain(bool tryAgain) public{
-         (tryAgain)?deploy():start();
+          if(tryAgain){
+            deploy();
+        }else{
+            start();
+        }
+         
     }
     function checkIfContractHasBalance(int8 acc_type) public {
-         (acc_type ==  0)?deploy():waitBeforeCredit();
+         if (acc_type ==  0) {
+            deploy();
+        } else {
+            waitBeforeCredit();
+        }
+    
     }
 
     function getDebotInfo() public functionID(0xDEB) override view returns(
@@ -150,7 +165,7 @@ abstract contract BaseDebot is Debot{
 
     
 
-    function ggetSummary(ProductsSummary summary) internal returns(string){
+    function getSummary(ProductsSummary summary) internal returns(string){
         return format(
                 "You have {}/{}/{} (Number of products purchased/Number of products not purchased/Total price of products)",summary.paidFor, summary.notPaid,summary.totalSum
             );
@@ -206,8 +221,8 @@ abstract contract BaseDebot is Debot{
         Terminal.input(tvm.functionId(_removeProduct), "Please enter the product ID to delete.", false);
     }
 
-    function _removeProduct(string val) public{
-        (uint id, bool valid) = stoi(val);
+    function _removeProduct(string value) public{
+        (uint id, bool valid) = stoi(value);
         if(!valid){
             DeleteError(0, 0);
             return;

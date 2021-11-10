@@ -11,7 +11,7 @@ contract ShoppingListDebot is BaseDebot{
     uint  IDpurchased;
 
     function menuOutput(ProductsSummary summary) public override{
-        string shoppingSummary = ggetSummary(summary);
+        string shoppingSummary = getSummary(summary);
         Menu.select(shoppingSummary, "",
             [
                 MenuItem("Buy product that are in the shopping list", "", tvm.functionId(buyProductName)),
@@ -41,8 +41,8 @@ contract ShoppingListDebot is BaseDebot{
             pubkey: userPubKey,
             time: uint64(now),
             expire: 0,
-            callbackId: tvm.functionId(purchaseError),
-            onErrorId: tvm.functionId(purchasedSuccessfully)
+            callbackId: tvm.functionId(purchasedSuccessfully),
+            onErrorId: tvm.functionId(purchaseError)
         }(IDpurchased, cost);
     }
     

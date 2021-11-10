@@ -13,14 +13,15 @@ struct Product{
     uint id;
     string name;
     uint count;
-    uint when_created;
+    uint64 when_created;
     bool purchased;
     uint cost;
     bool deleted;
 }
 
-interface Transactable{
+interface IntarfacesendTransaction{
     function sendTransaction(address dest, uint128 value, bool bounce, uint8 flags, TvmCell payload) external;
+    
 }
 
 abstract contract HasConstructorWithPubKey {
@@ -31,7 +32,7 @@ interface InterfaceProducts {
 
     function getProductsSummary() external returns (ProductsSummary summary);
     function getProductsList() external returns(Product[] ProductsList);
-    function addToLIst(string name, uint count) external;
+    function addToLIst(string , uint ) external;
     function deleteFromList(uint id) external;
     function buy(uint id, uint price) external;
     

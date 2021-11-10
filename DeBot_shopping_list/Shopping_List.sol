@@ -5,20 +5,20 @@ pragma AbiHeader pubkey;
 
 import "Struct_and_interface.sol";
 
-contract ShoppingList is InterfaceProducts{
+contract ShoppingList {
 
-    mapping(uint => Product) Products;
+    mapping(uint => Product) MapProducts;
 
     uint ownerPubKey;
     uint IDnewProduc;
   
     modifier onlyOwner(){
-        require(msg.pubkey() == ownerPubKey, 200);
+        require(msg.pubkey() == ownerPubKey, 150);
         _;
     }
 
     constructor(uint pubkey) public {
-        require(pubkey != 0, 120);
+        require(pubkey != 0, 121);
         tvm.accept();
         IDnewProduc = 0;
         ownerPubKey = pubkey;
@@ -26,45 +26,44 @@ contract ShoppingList is InterfaceProducts{
 
     
 
-    function addToLIst(string name, uint count) public override onlyOwner{
+    function addToLIst(string name, uint32 count) public onlyOwner {
         tvm.accept();
-        IDnewProduc+=1;
-
-        Products[IDnewProduc] = Product(IDnewProduc, name, count, now, false, 0, false);
+        IDnewProduc++;
+        MapProducts[IDnewProduc] = Product(IDnewProduc, name, count, now, false, 0,false);
     }
 
-    function deleteFromList(uint ID) public override onlyOwner{
-        require(!Products[ID].deleted, 105);
-        if(Products.exists(ID)){
+    function deleteFromList(uint ID) public  onlyOwner{
+        require(!MapProducts[ID].deleted, 105);
+        if(MapProducts.exists(ID)){
 
             tvm.accept();
-            Products[ID].deleted = true;
+            MapProducts[ID].deleted = true;
         }
     }
 
-    function getProductsList() public override returns(Product[] ProductsList){
-        for((uint ID, Product product) : Products) {
+    function getProductsList() public  returns(Product[] ProductsList){
+        for((uint ID, Product product) : MapProducts) {
             if(!product.deleted){
                 ProductsList.push(Product(ID, product.name, product.count, product.when_created, product.purchased, product.cost, false));
             }
        }
     }
 
-    function buy(uint ID, uint price) public override onlyOwner{
+    function buy(uint ID, uint price) public  onlyOwner{
 
-        optional(Product) ProductToBuy = Products.fetch(ID);
+        optional(Product) ProductToBuy = MapProducts.fetch(ID);
 
         require(ProductToBuy.hasValue(), 103);
-        require(!Products[ID].deleted, 105);
+        require(!MapProducts[ID].deleted, 105);
         tvm.accept();
 
-        Products[ID].cost = price;
-        Products[ID].purchased = true;
+        MapProducts[ID].cost = price;
+        MapProducts[ID].purchased = true;
     }
 
-    function getProductsSummary() public override returns(ProductsSummary summary){
+    function getProductsSummary() public returns(ProductsSummary summary){
         tvm.accept();
-        for((uint ID, Product ProductToBuy) : Products){
+        for((uint ID, Product ProductToBuy) : MapProducts){
             if(!ProductToBuy.deleted){
                 if(ProductToBuy.purchased){
                     summary.paidFor += ProductToBuy.count;

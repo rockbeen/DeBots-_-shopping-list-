@@ -14,7 +14,7 @@
 			"name": "addToLIst",
 			"inputs": [
 				{"name":"name","type":"bytes"},
-				{"name":"count","type":"uint256"}
+				{"name":"count","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -32,7 +32,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint256"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint64"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
 			]
 		},
 		{
