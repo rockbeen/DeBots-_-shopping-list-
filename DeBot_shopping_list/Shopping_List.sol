@@ -26,13 +26,13 @@ contract ShoppingList {
 
     
 
-    function addToLIst(string name, uint32 count) public onlyOwner {
+    function addtoList(string name, uint amount) public onlyOwner {//add a product to the list
         tvm.accept();
         IDnewProduc++;
-        MapProducts[IDnewProduc] = Product(IDnewProduc, name, count, now, false, 0,false);
+        MapProducts[IDnewProduc] = Product(IDnewProduc, name, amount, now, false, 0,false);
     }
 
-    function deleteFromList(uint ID) public  onlyOwner{
+    function deleteFromList(uint ID) public  onlyOwner{//delete a product to the list
         require(!MapProducts[ID].deleted, 105);
         if(MapProducts.exists(ID)){
 
@@ -41,7 +41,7 @@ contract ShoppingList {
         }
     }
 
-    function getProductsList() public  returns(Product[] ProductsList){
+    function getProductsList() public  returns(Product[] ProductsList){//get a list of products
         for((uint ID, Product product) : MapProducts) {
             if(!product.deleted){
                 ProductsList.push(Product(ID, product.name, product.count, product.when_created, product.purchased, product.cost, false));
@@ -49,7 +49,7 @@ contract ShoppingList {
        }
     }
 
-    function buy(uint ID, uint price) public  onlyOwner{
+    function buy(uint ID, uint price) public  onlyOwner{//buy a product by id for the specified price
 
         optional(Product) ProductToBuy = MapProducts.fetch(ID);
 
@@ -61,7 +61,7 @@ contract ShoppingList {
         MapProducts[ID].purchased = true;
     }
 
-    function getProductsSummary() public returns(ProductsSummary summary){
+    function getProductsSummary() public returns(ProductsSummary summary){//get a Summary of Products(paid/ not paid/ total sum)
         tvm.accept();
         for((uint ID, Product ProductToBuy) : MapProducts){
             if(!ProductToBuy.deleted){

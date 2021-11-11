@@ -83,9 +83,9 @@
 			]
 		},
 		{
-			"name": "creditAcc",
+			"name": "creditAccount",
 			"inputs": [
-				{"name":"val","type":"address"}
+				{"name":"value","type":"address"}
 			],
 			"outputs": [
 			]
@@ -190,7 +190,7 @@
 		{
 			"name": "_showList",
 			"inputs": [
-				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint256"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint64"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
 			],
 			"outputs": [
 			]
@@ -206,7 +206,7 @@
 		{
 			"name": "_removeProduct",
 			"inputs": [
-				{"name":"val","type":"bytes"}
+				{"name":"value","type":"bytes"}
 			],
 			"outputs": [
 			]

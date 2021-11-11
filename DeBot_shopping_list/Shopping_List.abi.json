@@ -11,10 +11,10 @@
 			]
 		},
 		{
-			"name": "addToLIst",
+			"name": "addtoList",
 			"inputs": [
 				{"name":"name","type":"bytes"},
-				{"name":"count","type":"uint32"}
+				{"name":"amount","type":"uint256"}
 			],
 			"outputs": [
 			]

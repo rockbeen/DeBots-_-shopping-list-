@@ -17,9 +17,10 @@ abstract contract BaseDebot is Debot{
     uint userPubKey;
     bytes iconPath;
     
-    address contractAddr;
-    address creationAcc;
-    
+    address contractAddr;//contract address
+    address creationAcc;//account to create
+    TvmCell m_listCode;
+    TvmCell m_listData;
     TvmCell contractStateInit;
     uint32 INITIAL_BALANCE =  200000000;
     
@@ -32,7 +33,10 @@ abstract contract BaseDebot is Debot{
     function setContract(TvmCell code, TvmCell data) public {
         require(msg.pubkey() == tvm.pubkey(), 101);
         tvm.accept();
-        contractStateInit = tvm.buildStateInit(code, data);
+        m_listCode = code;
+        m_listData = data;
+        contractStateInit = tvm.buildStateInit(m_listCode, m_listData);
+        
     }
 
     function savePublicKey(string value) public {
@@ -173,7 +177,7 @@ abstract contract BaseDebot is Debot{
 
 
 
-    function showList(uint32 index) public{
+    function showList(uint32 index) public{//get of product statistics
         index = index;
         optional(uint256) none;
         InterfaceProducts(contractAddr).getProductsList{
@@ -196,7 +200,7 @@ abstract contract BaseDebot is Debot{
     function _showList(Product[] ProductsList) public{
         printList(ProductsList);
     }
-    function printList(Product[] ProductsList) internal{
+    function printList(Product[] ProductsList) internal{//output of product statistics
         if (ProductsList.length != 0){
             string list = "";
             for(uint i = 0; i < ProductsList.length; i++){

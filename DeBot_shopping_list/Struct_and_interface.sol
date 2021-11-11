@@ -3,13 +3,13 @@ pragma AbiHeader expire;
 pragma AbiHeader time;
 pragma AbiHeader pubkey;
 
-struct ProductsSummary{
+struct ProductsSummary{//Brief description of the products
     uint256 paidFor;
     uint256 notPaid;
     uint256 totalSum;
 }
 
-struct Product{
+struct Product{//structure of the product type
     uint id;
     string name;
     uint count;
@@ -30,11 +30,11 @@ abstract contract HasConstructorWithPubKey {
 
 interface InterfaceProducts {
 
-    function getProductsSummary() external returns (ProductsSummary summary);
-    function getProductsList() external returns(Product[] ProductsList);
-    function addToLIst(string , uint ) external;
-    function deleteFromList(uint id) external;
-    function buy(uint id, uint price) external;
+    function getProductsSummary() external returns (ProductsSummary summary);//get a Summary of Products(paid/ not paid/ total sum)
+    function getProductsList() external returns(Product[] ProductsList);//get a list of products
+    function addtoList(string name, uint amount) external;//add a product to the list
+    function deleteFromList(uint id) external;//delete a product to the list
+    function buy(uint id, uint price) external;//buy a product by id for the specified price
     
 }
 

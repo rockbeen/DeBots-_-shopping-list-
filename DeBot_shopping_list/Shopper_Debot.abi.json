@@ -35,7 +35,7 @@
 			]
 		},
 		{
-			"name": "onProductAddError",
+			"name": "ProductAddError",
 			"inputs": [
 				{"name":"sdkError","type":"uint32"},
 				{"name":"exitCode","type":"uint32"}
@@ -44,7 +44,7 @@
 			]
 		},
 		{
-			"name": "onProductAdded",
+			"name": "ProductAdded",
 			"inputs": [
 			],
 			"outputs": [

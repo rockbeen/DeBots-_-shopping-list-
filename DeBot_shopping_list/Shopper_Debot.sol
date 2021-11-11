@@ -9,14 +9,14 @@ import "Shopping_List.sol";
 contract ShopperDebot is BaseDebot{
 
     string NameCurrentProduct;
-    uint productQuantityCurrent;
+   
 
     function menuOutput(ProductsSummary summary) public override{
         Menu.select(getSummary(summary), "",
             [
-                MenuItem("Add product:", "", tvm.functionId(NameProduct)),
-                MenuItem("Remove product:", "", tvm.functionId(removeProduct)),
-                MenuItem("Show shopping list:", "", tvm.functionId(showList))
+                MenuItem("Add product ", "", tvm.functionId(NameProduct)),
+                MenuItem("Remove produc ", "", tvm.functionId(removeProduct)),
+                MenuItem("Show shopping list ", "", tvm.functionId(showList))
             ]
         );
     }
@@ -30,30 +30,29 @@ contract ShopperDebot is BaseDebot{
         NameCurrentProduct = value;
         Terminal.input(tvm.functionId(AddProduct), "Please, specify the number of products", false);
     }
+
     function AddProduct(string value) public {
-        (uint256 count,) = stoi(value);
-        productQuantityCurrent = uint(count);
-        optional(uint256) pubkey = 0;
-        InterfaceProducts(contractAddr).addToLIst{
+        (uint amount, bool valid) = stoi(value); 
+        InterfaceProducts(contractAddr).addtoList{
                 abiVer: 2,
                 extMsg: true,
                 sign: true,
-                pubkey: pubkey,
+                pubkey: userPubKey,
                 time: uint64(now),
                 expire: 0,
-                callbackId: tvm.functionId(onProductAdded),
-                onErrorId: tvm.functionId(onProductAddError)
-            }(NameCurrentProduct, productQuantityCurrent);
+                callbackId: tvm.functionId(ProductAdded),
+                onErrorId: tvm.functionId(ProductAddError)
+            }(NameCurrentProduct, amount);
     }
 
     
       
 
-     function onProductAddError(uint32 sdkError, uint32 exitCode) public{
+    function ProductAddError(uint32 sdkError, uint32 exitCode) public{
         Terminal.print(0, "Error. Please, try again.");
         NameProduct(0);
     }
-    function onProductAdded() public{
+    function ProductAdded() public{
         Terminal.print(0, "You have added a new item to your shopping list.");
         showData();
     }
