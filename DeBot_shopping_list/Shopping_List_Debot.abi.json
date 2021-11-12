@@ -21,7 +21,7 @@
 		{
 			"name": "buyProductSize",
 			"inputs": [
-				{"name":"val","type":"bytes"}
+				{"name":"value","type":"bytes"}
 			],
 			"outputs": [
 			]
@@ -29,7 +29,7 @@
 		{
 			"name": "buyProduct",
 			"inputs": [
-				{"name":"val","type":"bytes"}
+				{"name":"value","type":"bytes"}
 			],
 			"outputs": [
 			]

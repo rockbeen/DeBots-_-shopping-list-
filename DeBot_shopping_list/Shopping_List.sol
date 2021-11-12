@@ -5,7 +5,7 @@ pragma AbiHeader pubkey;
 
 import "Struct_and_interface.sol";
 
-contract ShoppingList {
+contract Shopping_List {
 
     mapping(uint => Product) MapProducts;
 

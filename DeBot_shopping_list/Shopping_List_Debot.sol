@@ -5,7 +5,7 @@ pragma AbiHeader pubkey;
 
 import "Base_Debot.sol";
 
-contract ShoppingListDebot is BaseDebot{
+contract Shopping_ListDebot is BaseDebot{
 
 
     uint  IDpurchased;
@@ -26,14 +26,14 @@ contract ShoppingListDebot is BaseDebot{
         Terminal.input(tvm.functionId(buyProductSize), "Please, enter the product ID to purchase", false);
     }
 
-    function buyProductSize(string val) public{
-        (uint id, bool valid) = stoi(val);
+    function buyProductSize(string value) public{
+        (uint id, bool valid) = stoi(value);
         IDpurchased = id;
         Terminal.input(tvm.functionId(buyProduct), "Please, enter the price for this item", false);
     }
 
-    function buyProduct(string val) public{ 
-        (uint cost, bool valid) = stoi(val);
+    function buyProduct(string value) public{ 
+        (uint cost, bool valid) = stoi(value);
         InterfaceProducts(contractAddr).buy{
             extMsg: true,
             abiVer: 2,
