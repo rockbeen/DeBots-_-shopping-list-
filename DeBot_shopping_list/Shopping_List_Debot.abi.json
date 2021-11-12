@@ -188,7 +188,7 @@
 			]
 		},
 		{
-			"name": "_showList",
+			"name": "showListSuccess",
 			"inputs": [
 				{"components":[{"name":"id","type":"uint256"},{"name":"name","type":"bytes"},{"name":"count","type":"uint256"},{"name":"when_created","type":"uint64"},{"name":"purchased","type":"bool"},{"name":"cost","type":"uint256"},{"name":"deleted","type":"bool"}],"name":"ProductsList","type":"tuple[]"}
 			],
@@ -219,7 +219,7 @@
 			]
 		},
 		{
-			"name": "DeleteError",
+			"name": "DeleteProductError",
 			"inputs": [
 				{"name":"sdkError","type":"uint32"},
 				{"name":"exitCode","type":"uint32"}

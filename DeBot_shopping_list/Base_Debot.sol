@@ -187,7 +187,7 @@ abstract contract BaseDebot is Debot{
             pubkey: none,
             time: uint64(now),
             expire: 0,
-            callbackId: tvm.functionId(_showList),
+            callbackId: tvm.functionId(showListSuccess),
             onErrorId: tvm.functionId(showListError)
         }();
     }
@@ -197,7 +197,7 @@ abstract contract BaseDebot is Debot{
         showData();
     }
 
-    function _showList(Product[] ProductsList) public{
+    function showListSuccess(Product[] ProductsList) public{
         printList(ProductsList);
     }
     function printList(Product[] ProductsList) internal{//output of product statistics
@@ -228,7 +228,7 @@ abstract contract BaseDebot is Debot{
     function _removeProduct(string value) public{
         (uint id, bool valid) = stoi(value);
         if(!valid){
-            DeleteError(0, 0);
+            DeleteProductError(0, 0);
             return;
         } 
         InterfaceProducts(contractAddr).deleteFromList{
@@ -239,7 +239,7 @@ abstract contract BaseDebot is Debot{
             time: uint64(now),
             expire: 0,
             callbackId: tvm.functionId(successfullyDeletedProduct),
-            onErrorId: tvm.functionId(DeleteError)
+            onErrorId: tvm.functionId(DeleteProductError)
         }(id);
     }
 
@@ -250,7 +250,7 @@ abstract contract BaseDebot is Debot{
 
   
 
-    function DeleteError(uint32 sdkError, uint32 exitCode) public{
+    function DeleteProductError(uint32 sdkError, uint32 exitCode) public{
         Terminal.print(0, "Error.Try another id");
         showData();
     }

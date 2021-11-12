@@ -14,19 +14,19 @@ contract ShopperDebot is BaseDebot{
     function menuOutput(ProductsSummary summary) public override{
         Menu.select(getSummary(summary), "",
             [
-                MenuItem("Add product ", "", tvm.functionId(NameProduct)),
+                MenuItem("Add product ", "", tvm.functionId(AddProductName)),
                 MenuItem("Remove produc ", "", tvm.functionId(removeProduct)),
                 MenuItem("Show shopping list ", "", tvm.functionId(showList))
             ]
         );
     }
 
-    function NameProduct(uint32 index) public{
+    function AddProductName(uint32 index) public{
         index = index;
-        Terminal.input(tvm.functionId(NumberOfProducts), "Please, enter the product name", false);
+        Terminal.input(tvm.functionId(AddProductsNumder), "Please, enter the product name", false);
     }
 
-    function NumberOfProducts(string value) public{
+    function AddProductsNumder(string value) public{
         NameCurrentProduct = value;
         Terminal.input(tvm.functionId(AddProduct), "Please, specify the number of products", false);
     }
@@ -50,7 +50,7 @@ contract ShopperDebot is BaseDebot{
 
     function ProductAddError(uint32 sdkError, uint32 exitCode) public{
         Terminal.print(0, "Error. Please, try again.");
-        NameProduct(0);
+        AddProductName(0);
     }
     function ProductAdded() public{
         Terminal.print(0, "You have added a new item to your shopping list.");
